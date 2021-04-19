@@ -1,24 +1,56 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+  | Column   | type   | Options     |
+  | -------- | ------ | ----------- |
+  | nickname | string | null: false |
+  | email    | string | null: false |
+  | password | string | null: false |
+  | name     | string | null: false |
+  | birthday | string | null: false |
 
-* Ruby version
+  ### Association
 
-* System dependencies
+  - has_many :purchase_logs
+  - has_many :products
 
-* Configuration
+  ## purchase_logs テーブル
 
-* Database creation
+  | Column   | type   |
+  | -------- | ------ |
+  | buy_log  | string |
+  | sell_log | string |
+  | buy_man  | string |
 
-* Database initialization
+  ### Association
 
-* How to run the test suite
+  - belong_to :users
+  - belong_to :products
+  - belong_to :address_info
 
-* Services (job queues, cache servers, search engines, etc.)
+  ## products テーブル
 
-* Deployment instructions
+  | Column      | type    | Option      |
+  | ----------- | ------  | ----------- |
+  | post_text   | text    | null: false |
+  | seller_name | string  | null: false |
+  | price       | integer | null: false |
 
-* ...
+  ### Association
+
+  - belong_to :users
+  - has_one :purchase_logs
+
+  ## address_info テーブル
+  | Column        | type    | Option      |
+  | ------------- | ------- | ----------  |
+  | postal_code   | string  | null: false |
+  | municipality  | string  | null: false |
+  | address       | string  | null: false |
+  | building_name | string  |             |
+  | phone_number  | integer | null: false |
+
+  ### Association
+
+  - belong_to :purchase_logs
