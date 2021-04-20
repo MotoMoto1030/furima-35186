@@ -2,13 +2,16 @@
 
 ## users テーブル
 
-  | Column   | type   | Options     |
-  | -------- | ------ | ----------- |
-  | nickname | string | null: false |
-  | email    | string | null: false |
-  | password | string | null: false |
-  | name     | string | null: false |
-  | birthday | string | null: false |
+  | Column                | type   | Options                   |
+  | --------------------- | ------ | ------------------------- |
+  | nickname              | string | null: false               |
+  | email                 | string | null: false, unique: true |
+  | encrypted_password    | string | null: false               |
+  | family_name           | string | null: false               |
+  | first_name            | string | null: false               |
+  | family_name(katakana) | string | null: false               |
+  | first_name(katakana)  | string | null: false               |
+  | birthday              | date   | null: false               |
 
   ### Association
 
@@ -17,30 +20,34 @@
 
   ## purchase_logs テーブル
 
-  | Column   | type   |
-  | -------- | ------ |
-  | buy_log  | string |
-  | sell_log | string |
-  | buy_man  | string |
+  | Column   | type       | Option                         |
+  | -------- | ---------- | ------------------------------ |
+  | user     | references | null: false, foreign_key: true |
+  | product  | references | null: false, foreign_key: true |
 
   ### Association
 
-  - belong_to :users
-  - belong_to :products
-  - belong_to :address_info
+  - belong_to :user
+  - belong_to :product
+  - has_one :address_info
 
   ## products テーブル
 
-  | Column      | type    | Option      |
-  | ----------- | ------  | ----------- |
-  | post_text   | text    | null: false |
-  | seller_name | string  | null: false |
-  | price       | integer | null: false |
+  | Column          | type       | Option      |
+  | --------------- | ---------- | ----------- |
+  | post_text       | text       | null: false |
+  | seller_name     | string     | null: false |
+  | price           | integer    | null: false |
+  | product_status  | string     | null: false |
+  | shipping_charge | string     | null: false |
+  | shipping_area   | string     | null: false |
+  | category        | string     | null: false |
+  | user            | references | null: false, foreign_key: true |
 
   ### Association
 
-  - belong_to :users
-  - has_one :purchase_logs
+  - belong_to :user
+  - has_one :purchase_log
 
   ## address_info テーブル
   | Column        | type    | Option      |
@@ -53,4 +60,4 @@
 
   ### Association
 
-  - belong_to :purchase_logs
+  - belong_to :purchase_log
