@@ -33,32 +33,33 @@
 
   ## products テーブル
 
-  | Column             | type        | Option      |
-  | ------------------ | ----------- | ----------- |
-  | post_text          | text        | null: false |
-  | seller_name        | string      | null: false |
-  | price              | integer     | null: false |
-  | product_status_id  | integer     | null: false |
-  | shipping_charge_id | integer     | null: false |
-  | shipping_area_id   | integer     | null: false |
-  | category_id        | integer     | null: false |
-  | days_to_ship_id    | integer     | null: false |
-  | user               | references  | null: false, foreign_key: true |
-  | purchase_log       | references  | null: false, foreign_key: true |
+  | Column              | type        | Option      |
+  | ------------------  | ----------- | ----------- |
+  | product_name        | string      | null: false |
+  | product_description | string      | null: false |
+  | price               | integer     | null: false |
+  | product_status_id   | integer     | null: false |
+  | shipping_charge_id  | integer     | null: false |
+  | shipping_area_id    | integer     | null: false |
+  | category_id         | integer     | null: false |
+  | days_to_ship_id     | integer     | null: false |
+  | user                | references  | null: false, foreign_key: true |
+  | purchase_log        | references  | null: false, foreign_key: true |
   ### Association
 
   - belong_to :user
   - has_one :purchase_log
 
   ## address_info テーブル
-  | Column         | type    | Option      |
-  | -------------- | ------- | ----------  |
-  | postal_code    | string  | null: false |
-  | prefectures_id | integer | null: false |
-  | municipality   | string  | null: false |
-  | address        | string  | null: false |
-  | building_name  | string  |             |
-  | phone_number   | integer | null: false |
+  | Column         | type       | Option      |
+  | -------------- | ---------- | ----------  |
+  | postal_code    | string     | null: false |
+  | prefectures_id | integer    | null: false |
+  | municipality   | string     | null: false |
+  | address        | string     | null: false |
+  | building_name  | string     |             |
+  | phone_number   | integer    | null: false |
+  | purchase_log   | references | null: false, foreign_key: true |
 
   ### Association
 
