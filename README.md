@@ -16,35 +16,34 @@
   ### Association
 
   - has_many :purchase_logs
-  - has_many :products
+  - has_many :items
 
   ## purchase_logs テーブル
 
   | Column   | type       | Option                         |
   | -------- | ---------- | ------------------------------ |
   | user     | references | null: false, foreign_key: true |
-  | product  | references | null: false, foreign_key: true |
+  | item     | references | null: false, foreign_key: true |
 
   ### Association
 
   - belong_to :user
-  - belong_to :product
+  - belong_to :item
   - has_one :address_info
 
-  ## products テーブル
+  ## items テーブル
 
   | Column              | type        | Option      |
   | ------------------- | ----------- | ----------- |
-  | product_name        | string      | null: false |
-  | product_description | text        | null: false |
+  | item_name        | string      | null: false |
+  | item_description | text        | null: false |
   | price               | integer     | null: false |
-  | product_status_id   | integer     | null: false |
+  | item_status_id   | integer     | null: false |
   | shipping_charge_id  | integer     | null: false |
   | shipping_area_id    | integer     | null: false |
   | category_id         | integer     | null: false |
   | days_to_ship_id     | integer     | null: false |
   | user                | references  | null: false, foreign_key: true |
-  | purchase_log        | references  | null: false |
   ### Association
 
   - belong_to :user
@@ -59,7 +58,7 @@
   | address        | string     | null: false |
   | building_name  | string     |             |
   | phone_number   | string     | null: false |
-  | purchase_log   | references | null: false |
+  | purchase_log   | references | null: false, foreign_key: true |
 
   ### Association
 
