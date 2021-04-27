@@ -18,7 +18,7 @@ class Item < ApplicationRecord
           validates :shipping_area_id
           validates :shipping_charge_id
         end
-            with_options format: { with:/\A[0-9]+\z/, message: 'Price Half-width number'} do
+            with_options format: { with:/\A[0-9]+\z/, message: 'Half-width number'} do
               validates :price
             end
     end
