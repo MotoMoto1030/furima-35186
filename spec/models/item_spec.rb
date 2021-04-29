@@ -43,8 +43,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price Half-width number')
       end
 
-      it 'priceが範囲内の数字でなければ出品できない' do
-        @item.price = '100'
+      it 'priceが全角文字だと出品できない' do
+        @item.price = 'あいうえお'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Half-width number')
+      end
+
+      it 'priceが半角英数混合だと出品できない' do
+        @item.price = '500er'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Half-width number')
+      end
+
+      it 'priceが半角英語だと出品できない' do
+        @item.price = 'abcdefg'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Half-width number')
+      end
+
+      it 'priceが下限以下の数字であれば出品できない' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
+      end
+
+      it 'priceが上限以上の数字であれば出品できない' do
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
@@ -55,8 +79,20 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Item status Select')
       end
 
+      it 'item_status_idが1では出品できない' do
+        @item.item_status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Item status Select')
+      end
+
       it 'shipping_chrgeが空では出品できない' do
         @item.shipping_charge_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Shipping charge Select')
+      end
+
+      it 'shipping_chrge_idが1では出品できない' do
+        @item.shipping_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping charge Select')
       end
@@ -67,14 +103,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Shipping area Select')
       end
 
+      it 'shipping_area_idが1では出品できない' do
+        @item.shipping_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Shipping area Select')
+      end
+
       it 'categoryが空では出品できない' do
         @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Category Select')
       end
 
+      it 'category_idが1では出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Category Select')
+      end
+
       it 'days_to_shipが空では出品できない' do
         @item.days_to_ship_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Days to ship Select')
+      end
+
+      it 'days_to_ship_idが1では出品できない' do
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Days to ship Select')
       end
