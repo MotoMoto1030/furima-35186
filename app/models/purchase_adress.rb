@@ -12,4 +12,9 @@ class PurchaseAddress
     validates :prefecture, numericality: {other_than: 0, message: "Select"}
   end
   validates :building_name
+
+  def save
+    purchase = Purchase.create(item_id: item_id, user_id: user_id)
+    AddressInfo.create(postal_code: postal_code, municipality: municipality, address: address, phone_number: phone_number, prefecture: prefecture, building_name: building_name, purchase_id: purchase.id)
+  end
 end
