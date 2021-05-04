@@ -11,7 +11,6 @@ class OrderAddress
     validates :item_id
     validates :prefecture, numericality: {other_than: 0, message: "Select"}
   end
-  validates :building_name
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
