@@ -1,4 +1,4 @@
-class PurchaseAddress
+class OrderAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture, :municipality, :address, :building_name, :phone_number, :user_id, :item_id
 
@@ -14,7 +14,7 @@ class PurchaseAddress
   validates :building_name
 
   def save
-    purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    AddressInfo.create(postal_code: postal_code, municipality: municipality, address: address, phone_number: phone_number, prefecture: prefecture, building_name: building_name, purchase_id: purchase.id)
+    order = Order.create(item_id: item_id, user_id: user_id)
+    AddressInfo.create(postal_code: postal_code, municipality: municipality, address: address, phone_number: phone_number, prefecture: prefecture, building_name: building_name, order_id: order.id)
   end
 end
