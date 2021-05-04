@@ -1,2 +1,3 @@
 class AddressInfo < ApplicationRecord
+  belongs_to :order
 end
