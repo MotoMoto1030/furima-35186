@@ -9,6 +9,7 @@ class OrderAddress
     validates :phone_number, format: {with: /\A\d{10,11}\z/, message: "Input only number"}
     validates :user_id
     validates :item_id
+    validates :token
     validates :shipping_area_id, numericality: {other_than: 1, message: "Select"}
   end
 
