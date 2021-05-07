@@ -63,9 +63,30 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'shipping_area_idが1だと保存できないこと' do
-        @order_address.shipping_area_id = '1'
+        @order_address.shipping_area_id = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Shipping area Select')
+        sleep 0.1
+      end
+
+      it 'userが空だと保存できないこと' do
+        @order_address.user_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+        sleep 0.1
+      end
+
+      it 'itemが空だと保存できないこと' do
+        @order_address.item_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+        sleep 0.1
+      end
+
+      it 'tokenが空だと保存できないこと' do
+        @order_address.token = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
         sleep 0.1
       end
     end
