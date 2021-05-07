@@ -1,11 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :item_find, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -25,5 +24,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order_address).permit(:postal_code, :municipality, :address, :phone_number, :shipping_area_id, :building_name).merge(token: params[:token], item_id: params[:item_id], user_id: current_user.id)
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 end

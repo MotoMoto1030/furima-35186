@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :order_address do
+    token             { 'aws' }
     postal_code       { '999-1030' }
     municipality      { '石川町' }
     address           { 'ガ96番地' }

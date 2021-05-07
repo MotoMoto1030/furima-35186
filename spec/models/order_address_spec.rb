@@ -55,10 +55,10 @@ RSpec.describe OrderAddress, type: :model do
         sleep 0.1
       end
 
-      it 'building_nameは空でも保存できること' do
-        @order_address.phone_number = ''
+      it 'phone_numberが全角数字だと保存できないこと' do
+        @order_address.phone_number = '０９０５５５５１１１０'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
+        expect(@order_address.errors.full_messages).to include("Phone number Input only number")
         sleep 0.1
       end
 
