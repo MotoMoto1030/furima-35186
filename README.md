@@ -18,7 +18,7 @@
   - has_many :purchase_logs
   - has_many :items
 
-  ## purchase_logs テーブル
+  ## orders テーブル
 
   | Column   | type       | Option                         |
   | -------- | ---------- | ------------------------------ |
