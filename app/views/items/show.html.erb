@@ -96,11 +96,11 @@
     <% else %>
     <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
-    <div class="comments">
       <h4>＜コメント一覧＞</h4>
-      <% @comments.each do |comment| %>
+    <div id="comments">
+      <% @comments.reverse_each do |comment| %>
         <p>
-          <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+          <strong><%= comment.user.nickname %> : </strong>
           <%= comment.text %>
         </p>
       <% end %>
