@@ -16,25 +16,25 @@ RSpec.describe Item, type: :model do
       it 'imageが空では出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("画像を入力してください")
+        expect(@item.errors.full_messages).to include('画像を入力してください')
       end
 
       it 'item_nameが空では出品できない' do
         @item.item_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品名を入力してください")
+        expect(@item.errors.full_messages).to include('商品名を入力してください')
       end
 
       it 'item_descriptionが空では出品できない' do
         @item.item_description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品説明を入力してください")
+        expect(@item.errors.full_messages).to include('商品説明を入力してください')
       end
 
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("値段を入力してください")
+        expect(@item.errors.full_messages).to include('値段を入力してください')
       end
 
       it 'priceが全角数字だと出品できない' do

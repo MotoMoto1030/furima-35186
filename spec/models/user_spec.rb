@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
       it 'emailが空では登録できない' do
         @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Eメールを入力してください")
+        expect(@user.errors.full_messages).to include('Eメールを入力してください')
       end
 
       it '重複したemailが存在する場合登録できない' do
@@ -35,13 +35,13 @@ RSpec.describe User, type: :model do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("ニックネームを入力してください")
+        expect(@user.errors.full_messages).to include('ニックネームを入力してください')
       end
 
       it 'passwordが空では登録できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードを入力してください")
+        expect(@user.errors.full_messages).to include('パスワードを入力してください')
       end
 
       it 'passwordが5文字以下では登録できない' do
@@ -72,43 +72,43 @@ RSpec.describe User, type: :model do
         @user.password = 'ab0001'
         @user.password_confirmation = 'ab0002'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
 
       it 'password_confirmationが空では登録できない' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
 
       it 'family_nameが空では登録できない' do
         @user.family_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("苗字を入力してください")
+        expect(@user.errors.full_messages).to include('苗字を入力してください')
       end
 
       it 'first_nameが空では登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("お名前を入力してください")
+        expect(@user.errors.full_messages).to include('お名前を入力してください')
       end
 
       it 'family_name_katakanaが空では登録できない' do
         @user.family_name_katakana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("カタカナで苗字を入力してください")
+        expect(@user.errors.full_messages).to include('カタカナで苗字を入力してください')
       end
 
       it 'first_name_katakanaが空では登録できない' do
         @user.first_name_katakana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("カタカナでお名前を入力してください")
+        expect(@user.errors.full_messages).to include('カタカナでお名前を入力してください')
       end
 
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("誕生日を入力してください")
+        expect(@user.errors.full_messages).to include('誕生日を入力してください')
       end
 
       it 'family_nameは全角でなければ登録できない' do
