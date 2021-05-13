@@ -31,15 +31,16 @@ class OrdersController < ApplicationController
 
   def order_root
     return redirect_to root_path if user_signed_in? && @item.user == current_user
-    redirect_to root_path if user_signed_in? && @item.order.present? 
+
+    redirect_to root_path if user_signed_in? && @item.order.present?
   end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_params[:token],
-        currency: 'jpy'
-      )
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: order_params[:token],
+      currency: 'jpy'
+    )
   end
 end

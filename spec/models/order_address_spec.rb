@@ -24,7 +24,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが空だと保存できないこと' do
         @order_address.postal_code = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("郵便番号を入力してください")
+        expect(@order_address.errors.full_messages).to include('郵便番号を入力してください')
       end
 
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
@@ -37,21 +37,21 @@ RSpec.describe OrderAddress, type: :model do
       it 'municipalityが空だと保存できないこと' do
         @order_address.municipality = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("市区町村を入力してください")
+        expect(@order_address.errors.full_messages).to include('市区町村を入力してください')
         sleep 0.1
       end
 
       it 'addressが空だと保存できないこと' do
         @order_address.address = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("番地を入力してください")
+        expect(@order_address.errors.full_messages).to include('番地を入力してください')
         sleep 0.1
       end
 
       it 'phone_numberが空だと保存できないこと' do
         @order_address.phone_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("電話番号を入力してください")
+        expect(@order_address.errors.full_messages).to include('電話番号を入力してください')
         sleep 0.1
       end
 
@@ -72,21 +72,21 @@ RSpec.describe OrderAddress, type: :model do
       it 'userが空だと保存できないこと' do
         @order_address.user_id = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("ユーザー情報を入力してください")
+        expect(@order_address.errors.full_messages).to include('ユーザー情報を入力してください')
         sleep 0.1
       end
 
       it 'itemが空だと保存できないこと' do
         @order_address.item_id = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("商品情報を入力してください")
+        expect(@order_address.errors.full_messages).to include('商品情報を入力してください')
         sleep 0.1
       end
 
       it 'tokenが空だと保存できないこと' do
         @order_address.token = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("カード情報を入力してください")
+        expect(@order_address.errors.full_messages).to include('カード情報を入力してください')
         sleep 0.1
       end
     end
